@@ -1,4 +1,4 @@
-const BASE_URL = '/api'
+const BASE_URL = 'https://tapim.onrender.com/api'
 
 // Get token from cookie or localStorage
 function getToken() {
