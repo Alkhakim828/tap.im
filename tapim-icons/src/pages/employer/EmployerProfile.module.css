@@ -1,0 +1,398 @@
+.page {
+  min-height: 100vh;
+  background: #f5f6fa;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout {
+  display: flex;
+  gap: 20px;
+  margin: 28px 32px;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  position: sticky;
+  top: 80px;
+}
+.tabBtn {
+  width: 100%; text-align: left;
+  background: none; border: none;
+  padding: 10px 14px; border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 500;
+  color: #374151; cursor: pointer;
+  transition: background 0.15s;
+  display: block;
+}
+.tabBtn:hover { background: #f3f4f6; }
+.tabActive { background: #2563eb !important; color: #fff !important; }
+
+.main { flex: 1; min-width: 0; }
+.sections { display: flex; flex-direction: column; gap: 14px; }
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 22px 24px;
+  position: relative;
+}
+.editBtn {
+  position: absolute; top: 18px; right: 18px;
+  background: none; border: none;
+  font-size: 16px; cursor: pointer;
+  color: #9ca3af; transition: color 0.15s; padding: 4px;
+}
+.editBtn:hover { color: #2563eb; }
+
+/* HERO */
+.heroRow { display: flex; gap: 20px; align-items: flex-start; }
+.companyLogo { flex-shrink: 0; border-radius: 12px; overflow: hidden; }
+.heroInfo { flex: 1; }
+.companyName { font-size: 22px; font-weight: 800; color: #111827; margin-bottom: 4px; }
+.companyType { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.companyMeta {
+  display: flex; gap: 32px;
+  font-size: 14px; color: #374151;
+  margin-bottom: 8px;
+}
+.companyCity { font-size: 13px; color: #6b7280; }
+
+/* ABOUT */
+.sectionTitle { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 12px; }
+.aboutText { font-size: 14px; color: #374151; line-height: 1.7; }
+
+/* CONTACTS */
+.contactList { display: flex; flex-direction: column; gap: 10px; }
+.contactRow { font-size: 14px; color: #374151; display: flex; align-items: center; gap: 8px; }
+.contactRow a { color: #2563eb; text-decoration: underline; }
+
+/* TECH */
+.techTags { display: flex; flex-wrap: wrap; gap: 10px; }
+.techTag {
+  background: #dbeafe; color: #1d4ed8;
+  padding: 6px 16px; border-radius: 20px;
+  font-size: 13px; font-weight: 500;
+}
+
+/* SECURITY */
+.changePassBtn {
+  width: 100%; background: #2563eb; color: #fff;
+  border: none; border-radius: 10px; padding: 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: background 0.15s;
+}
+.changePassBtn:hover { background: #1d4ed8; }
+
+/* VACANCIES TAB */
+.vacanciesSection { display: flex; flex-direction: column; gap: 16px; }
+.vacanciesHeader {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.vacanciesTitle { font-size: 22px; font-weight: 800; color: #111827; }
+.editLinkBtn {
+  background: none; border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; color: #9ca3af; cursor: pointer;
+}
+.editLinkBtn:hover { color: #2563eb; }
+
+.vacancyCards { display: flex; flex-direction: column; gap: 14px; }
+.vacancyCard {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-radius: 14px; padding: 22px 24px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.vacancyCardInner { flex: 1; }
+.vacancyTitle { font-size: 20px; font-weight: 800; color: #111827; margin-bottom: 10px; }
+.vacancyMeta {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px; color: #374151; margin-bottom: 14px;
+}
+.levelBadge {
+  background: #e0e7ff; color: #3730a3;
+  padding: 4px 14px; border-radius: 20px;
+  font-size: 13px; font-weight: 600;
+}
+.vacancyTags { display: flex; gap: 8px; flex-wrap: wrap; }
+.vacancyTag {
+  background: #dbeafe; color: #1d4ed8;
+  padding: 6px 16px; border-radius: 20px;
+  font-size: 13px; font-weight: 500;
+}
+.editVacancyBtn {
+  background: #2563eb; color: #fff;
+  border: none; border-radius: 10px;
+  padding: 12px 22px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  white-space: nowrap; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.editVacancyBtn:hover { background: #1d4ed8; }
+
+/* PUBLIC TAB */
+.publicWrap { display: flex; flex-direction: column; gap: 14px; }
+.publicCard {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-radius: 14px; padding: 22px 24px;
+}
+.publicLeft { display: flex; gap: 18px; align-items: flex-start; }
+.publicAvatar { flex-shrink: 0; border-radius: 10px; overflow: hidden; }
+.publicInfo { flex: 1; }
+.publicName { font-size: 20px; font-weight: 800; color: #111827; margin-bottom: 4px; }
+.publicCompany { font-size: 14px; color: #6b7280; margin-bottom: 10px; }
+.publicMeta {
+  display: flex; flex-wrap: wrap; gap: 16px;
+  font-size: 13px; color: #6b7280; margin-bottom: 12px;
+}
+.publicTags { display: flex; gap: 8px; flex-wrap: wrap; }
+.publicTag {
+  padding: 5px 14px; border-radius: 20px;
+  font-size: 12px; font-weight: 500;
+}
+.pink { background: #fce7f3; color: #be185d; }
+.blue { background: #dbeafe; color: #1d4ed8; }
+
+/* SAVED CANDIDATES TAB */
+.savedSection { display: flex; flex-direction: column; gap: 16px; }
+.savedTitle { font-size: 22px; font-weight: 800; color: #111827; }
+.savedGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.savedCard {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-radius: 14px; padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: box-shadow 0.2s;
+}
+.savedCard:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+.savedCardTop { display: flex; gap: 12px; align-items: flex-start; }
+.savedAvatarWrap { flex-shrink: 0; }
+.savedCandInfo { flex: 1; min-width: 0; }
+.savedCandName { font-size: 16px; font-weight: 800; color: #111827; margin-bottom: 3px; }
+.savedCandRole { font-size: 13px; color: #6b7280; margin-bottom: 8px; }
+.savedCandMeta { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #6b7280; }
+.savedLevelPill {
+  background: #f3f4f6; color: #374151;
+  padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 500;
+}
+.savedBookmark {
+  background: #f9fafb; border: 1px solid #e5e7eb;
+  border-radius: 8px; width: 34px; height: 34px;
+  cursor: pointer; font-size: 14px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.savedTags { display: flex; flex-wrap: wrap; gap: 7px; }
+.savedTag {
+  background: #dbeafe; color: #1d4ed8;
+  padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;
+}
+.savedSalary { font-size: 15px; font-weight: 700; color: #111827; }
+.savedDivider { height: 1px; background: #f3f4f6; }
+.savedActions { display: flex; gap: 8px; align-items: center; }
+.savedProfileBtn {
+  flex: 1; background: #2563eb; color: #fff;
+  border: none; border-radius: 8px; padding: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.savedProfileBtn:hover { background: #1d4ed8; }
+.savedIconBtn {
+  background: #f3f4f6; border: 1px solid #e5e7eb;
+  border-radius: 8px; width: 38px; height: 38px;
+  cursor: pointer; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+}
+.savedIconBtn:hover { background: #e5e7eb; }
+
+/* EDITABLE FIELDS */
+.fieldsGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.editableField { display: flex; flex-direction: column; gap: 6px; }
+.fieldLabel { font-size: 13px; font-weight: 600; color: #374151; }
+.fieldInput {
+  padding: 11px 14px; border: 1.5px solid #e5e7eb; border-radius: 9px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
+  outline: none; transition: border-color 0.2s; background: #fafafa;
+}
+.fieldInput:focus { border-color: #2563eb; background: #fff; }
+.fieldInput::placeholder { color: #9ca3af; }
+.fieldSelect {
+  padding: 11px 14px; border: 1.5px solid #e5e7eb; border-radius: 9px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
+  outline: none; background: #fafafa; cursor: pointer; appearance: none;
+}
+.bioTextarea {
+  width: 100%; padding: 12px 14px; border: 1.5px solid #e5e7eb; border-radius: 9px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
+  outline: none; resize: vertical; line-height: 1.6; background: #fafafa; margin-bottom: 14px;
+}
+.bioTextarea:focus { border-color: #2563eb; background: #fff; }
+.bioTextarea::placeholder { color: #9ca3af; }
+.saveBtn {
+  background: #2563eb; color: #fff; border: none; border-radius: 9px;
+  padding: 11px 24px; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.saveBtn:hover { background: #1d4ed8; }
+.emptyHint { font-size: 13px; color: #9ca3af; font-style: italic; }
+.logoutBtn {
+  margin-top: 8px; width: 100%; text-align: left; background: none;
+  border: none; border-top: 1px solid #f3f4f6; padding: 10px 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 500;
+  color: #ef4444; cursor: pointer; border-radius: 8px;
+}
+.logoutBtn:hover { background: #fef2f2; }
+
+/* EMPTY TAB */
+.emptyTabWrap {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 14px;
+  padding: 64px 32px; text-align: center;
+}
+.emptyIcon { font-size: 48px; margin-bottom: 16px; }
+.emptyTabTitle { font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+.emptyTabDesc { font-size: 14px; color: #6b7280; max-width: 320px; margin: 0 auto 20px; line-height: 1.6; }
+.addVacancyBtn {
+  background: #2563eb; color: #fff; border: none; border-radius: 9px;
+  padding: 12px 28px; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.addVacancyBtn:hover { background: #1d4ed8; }
+
+/* EDIT FIELDS */
+.editGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 4px; }
+.editStack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 4px; }
+.editInput {
+  width: 100%; padding: 10px 13px; border: 1.5px solid #e5e7eb; border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
+  outline: none; background: #fafafa; transition: border-color 0.2s;
+}
+.editInput:focus { border-color: #2563eb; background: #fff; }
+.editInput::placeholder { color: #9ca3af; }
+.editSelect {
+  width: 100%; padding: 10px 13px; border: 1.5px solid #e5e7eb; border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
+  outline: none; background: #fafafa; cursor: pointer;
+}
+.editTextarea {
+  width: 100%; padding: 11px 13px; border: 1.5px solid #e5e7eb; border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
+  outline: none; resize: vertical; line-height: 1.6; background: #fafafa; margin-bottom: 4px;
+}
+.editTextarea:focus { border-color: #2563eb; }
+.editTextarea::placeholder { color: #9ca3af; }
+.editActions {
+  display: flex; gap: 10px; justify-content: flex-end;
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid #f3f4f6;
+}
+.cancelBtn {
+  background: #f3f4f6; color: #374151; border: none; border-radius: 8px;
+  padding: 9px 20px; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.saveBtn {
+  background: #2563eb; color: #fff; border: none; border-radius: 8px;
+  padding: 9px 20px; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.saveBtn:hover { background: #1d4ed8; }
+.saveBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* COMPANY HERO */
+.heroRow { display: flex; gap: 20px; align-items: flex-start; }
+.companyLogoWrap { flex-shrink: 0; border-radius: 12px; overflow: hidden; }
+.heroInfo { flex: 1; }
+.companyName { font-size: 22px; font-weight: 800; color: #111827; margin-bottom: 4px; }
+.companyType { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.companyMeta { display: flex; gap: 24px; font-size: 14px; color: #374151; }
+.empty { color: #d1d5db; font-style: italic; font-weight: 400; font-size: 14px; }
+
+/* CONTACTS */
+.contactList { display: flex; flex-direction: column; gap: 10px; }
+.contactRow { font-size: 14px; color: #374151; display: flex; align-items: center; gap: 8px; }
+.contactRow a { color: #2563eb; text-decoration: underline; }
+.contactEmpty { font-size: 13px; color: #d1d5db; font-style: italic; }
+.aboutText { font-size: 14px; color: #374151; line-height: 1.7; }
+
+/* VACANCY FORM */
+.vacanciesSection { display: flex; flex-direction: column; gap: 16px; }
+.vacanciesHeader { display: flex; justify-content: space-between; align-items: center; }
+.vacanciesTitle { font-size: 22px; font-weight: 800; color: #111827; }
+.addVacancyBtn {
+  background: #2563eb; color: #fff; border: none; border-radius: 9px;
+  padding: 10px 20px; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.addVacancyBtn:hover { background: #1d4ed8; }
+
+.vacancyForm {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 24px;
+}
+.formTitle { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 18px; }
+.formGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.formGroup { display: flex; flex-direction: column; gap: 6px; margin-bottom: 4px; }
+.formLabel { font-size: 13px; font-weight: 600; color: #374151; }
+.req { color: #ef4444; }
+.formInput {
+  padding: 11px 13px; border: 1.5px solid #e5e7eb; border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
+  outline: none; background: #fafafa; width: 100%; transition: border-color 0.2s;
+}
+.formInput:focus { border-color: #2563eb; background: #fff; }
+.formInput::placeholder { color: #9ca3af; }
+.formTextarea {
+  width: 100%; padding: 11px 13px; border: 1.5px solid #e5e7eb; border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
+  outline: none; resize: vertical; line-height: 1.6; background: #fafafa;
+}
+.formTextarea:focus { border-color: #2563eb; background: #fff; }
+.formTextarea::placeholder { color: #9ca3af; }
+.formActions {
+  display: flex; gap: 10px; justify-content: flex-end;
+  margin-top: 18px; padding-top: 16px; border-top: 1px solid #f3f4f6;
+}
+
+/* VACANCY CARDS LIST */
+.vacancyCards { display: flex; flex-direction: column; gap: 14px; }
+.vacancyCard {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 14px;
+  padding: 22px 24px; display: flex; justify-content: space-between; align-items: flex-end;
+}
+.vacancyCardInner { flex: 1; }
+.vacancyTitle { font-size: 20px; font-weight: 800; color: #111827; margin-bottom: 10px; }
+.vacancyMeta { display: flex; gap: 16px; font-size: 14px; color: #374151; margin-bottom: 12px; }
+.vacancyTags { display: flex; gap: 8px; flex-wrap: wrap; }
+.vacancyTag {
+  background: #dbeafe; color: #1d4ed8;
+  padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 500;
+}
+.editVacancyBtn {
+  background: #2563eb; color: #fff; border: none; border-radius: 10px;
+  padding: 11px 20px; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap;
+  transition: background 0.15s; flex-shrink: 0;
+}
+.editVacancyBtn:hover { background: #1d4ed8; }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 32px; right: 32px;
+  background: #111827; color: #fff;
+  padding: 12px 20px; border-radius: 10px;
+  font-size: 14px; font-weight: 500; z-index: 999;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  animation: slideUp 0.2s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
