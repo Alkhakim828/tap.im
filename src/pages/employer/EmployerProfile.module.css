@@ -33,7 +33,7 @@
   display: block;
 }
 .tabBtn:hover { background: #f3f4f6; }
-.tabActive { background: #2563eb !important; color: #fff !important; }
+.tabActive { background: #3b82f6 !important; color: #fff !important; }
 
 .main { flex: 1; min-width: 0; }
 .sections { display: flex; flex-direction: column; gap: 14px; }
@@ -51,7 +51,7 @@
   font-size: 16px; cursor: pointer;
   color: #9ca3af; transition: color 0.15s; padding: 4px;
 }
-.editBtn:hover { color: #2563eb; }
+.editBtn:hover { color: #3b82f6; }
 
 /* HERO */
 .heroRow { display: flex; gap: 20px; align-items: flex-start; }
@@ -73,25 +73,25 @@
 /* CONTACTS */
 .contactList { display: flex; flex-direction: column; gap: 10px; }
 .contactRow { font-size: 14px; color: #374151; display: flex; align-items: center; gap: 8px; }
-.contactRow a { color: #2563eb; text-decoration: underline; }
+.contactRow a { color: #3b82f6; text-decoration: underline; }
 
 /* TECH */
 .techTags { display: flex; flex-wrap: wrap; gap: 10px; }
 .techTag {
-  background: #dbeafe; color: #1d4ed8;
+  background: #dbeafe; color: #2563eb;
   padding: 6px 16px; border-radius: 20px;
   font-size: 13px; font-weight: 500;
 }
 
 /* SECURITY */
 .changePassBtn {
-  width: 100%; background: #2563eb; color: #fff;
+  width: 100%; background: #3b82f6; color: #fff;
   border: none; border-radius: 10px; padding: 14px;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 15px; font-weight: 700; cursor: pointer;
   transition: background 0.15s;
 }
-.changePassBtn:hover { background: #1d4ed8; }
+.changePassBtn:hover { background: #2563eb; }
 
 /* VACANCIES TAB */
 .vacanciesSection { display: flex; flex-direction: column; gap: 16px; }
@@ -104,7 +104,7 @@
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px; color: #9ca3af; cursor: pointer;
 }
-.editLinkBtn:hover { color: #2563eb; }
+.editLinkBtn:hover { color: #3b82f6; }
 
 .vacancyCards { display: flex; flex-direction: column; gap: 14px; }
 .vacancyCard {
@@ -119,18 +119,18 @@
   font-size: 14px; color: #374151; margin-bottom: 14px;
 }
 .levelBadge {
-  background: #e0e7ff; color: #3730a3;
+  background: #e0e7ff; color: #4338ca;
   padding: 4px 14px; border-radius: 20px;
   font-size: 13px; font-weight: 600;
 }
 .vacancyTags { display: flex; gap: 8px; flex-wrap: wrap; }
 .vacancyTag {
-  background: #dbeafe; color: #1d4ed8;
+  background: #dbeafe; color: #2563eb;
   padding: 6px 16px; border-radius: 20px;
   font-size: 13px; font-weight: 500;
 }
 .editVacancyBtn {
-  background: #2563eb; color: #fff;
+  background: #3b82f6; color: #fff;
   border: none; border-radius: 10px;
   padding: 12px 22px;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -138,7 +138,7 @@
   white-space: nowrap; flex-shrink: 0;
   transition: background 0.15s;
 }
-.editVacancyBtn:hover { background: #1d4ed8; }
+.editVacancyBtn:hover { background: #2563eb; }
 
 /* PUBLIC TAB */
 .publicWrap { display: flex; flex-direction: column; gap: 14px; }
@@ -160,8 +160,8 @@
   padding: 5px 14px; border-radius: 20px;
   font-size: 12px; font-weight: 500;
 }
-.pink { background: #fce7f3; color: #be185d; }
-.blue { background: #dbeafe; color: #1d4ed8; }
+.pink { background: #fce7f3; color: #db2777; }
+.blue { background: #dbeafe; color: #2563eb; }
 
 /* SAVED CANDIDATES TAB */
 .savedSection { display: flex; flex-direction: column; gap: 16px; }
@@ -194,19 +194,19 @@
 }
 .savedTags { display: flex; flex-wrap: wrap; gap: 7px; }
 .savedTag {
-  background: #dbeafe; color: #1d4ed8;
+  background: #dbeafe; color: #2563eb;
   padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;
 }
 .savedSalary { font-size: 15px; font-weight: 700; color: #111827; }
 .savedDivider { height: 1px; background: #f3f4f6; }
 .savedActions { display: flex; gap: 8px; align-items: center; }
 .savedProfileBtn {
-  flex: 1; background: #2563eb; color: #fff;
+  flex: 1; background: #3b82f6; color: #fff;
   border: none; border-radius: 8px; padding: 10px;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s;
 }
-.savedProfileBtn:hover { background: #1d4ed8; }
+.savedProfileBtn:hover { background: #2563eb; }
 .savedIconBtn {
   background: #f3f4f6; border: 1px solid #e5e7eb;
   border-radius: 8px; width: 38px; height: 38px;
@@ -224,7 +224,7 @@
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
   outline: none; transition: border-color 0.2s; background: #fafafa;
 }
-.fieldInput:focus { border-color: #2563eb; background: #fff; }
+.fieldInput:focus { border-color: #3b82f6; background: #fff; }
 .fieldInput::placeholder { color: #9ca3af; }
 .fieldSelect {
   padding: 11px 14px; border: 1.5px solid #e5e7eb; border-radius: 9px;
@@ -236,14 +236,14 @@
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
   outline: none; resize: vertical; line-height: 1.6; background: #fafafa; margin-bottom: 14px;
 }
-.bioTextarea:focus { border-color: #2563eb; background: #fff; }
+.bioTextarea:focus { border-color: #3b82f6; background: #fff; }
 .bioTextarea::placeholder { color: #9ca3af; }
 .saveBtn {
-  background: #2563eb; color: #fff; border: none; border-radius: 9px;
+  background: #3b82f6; color: #fff; border: none; border-radius: 9px;
   padding: 11px 24px; font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s;
 }
-.saveBtn:hover { background: #1d4ed8; }
+.saveBtn:hover { background: #2563eb; }
 .emptyHint { font-size: 13px; color: #9ca3af; font-style: italic; }
 .logoutBtn {
   margin-top: 8px; width: 100%; text-align: left; background: none;
@@ -262,11 +262,11 @@
 .emptyTabTitle { font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 8px; }
 .emptyTabDesc { font-size: 14px; color: #6b7280; max-width: 320px; margin: 0 auto 20px; line-height: 1.6; }
 .addVacancyBtn {
-  background: #2563eb; color: #fff; border: none; border-radius: 9px;
+  background: #3b82f6; color: #fff; border: none; border-radius: 9px;
   padding: 12px 28px; font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s;
 }
-.addVacancyBtn:hover { background: #1d4ed8; }
+.addVacancyBtn:hover { background: #2563eb; }
 
 /* EDIT FIELDS */
 .editGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 4px; }
@@ -276,7 +276,7 @@
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
   outline: none; background: #fafafa; transition: border-color 0.2s;
 }
-.editInput:focus { border-color: #2563eb; background: #fff; }
+.editInput:focus { border-color: #3b82f6; background: #fff; }
 .editInput::placeholder { color: #9ca3af; }
 .editSelect {
   width: 100%; padding: 10px 13px; border: 1.5px solid #e5e7eb; border-radius: 8px;
@@ -288,7 +288,7 @@
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
   outline: none; resize: vertical; line-height: 1.6; background: #fafafa; margin-bottom: 4px;
 }
-.editTextarea:focus { border-color: #2563eb; }
+.editTextarea:focus { border-color: #3b82f6; }
 .editTextarea::placeholder { color: #9ca3af; }
 .editActions {
   display: flex; gap: 10px; justify-content: flex-end;
@@ -300,11 +300,11 @@
   font-size: 13px; font-weight: 600; cursor: pointer;
 }
 .saveBtn {
-  background: #2563eb; color: #fff; border: none; border-radius: 8px;
+  background: #3b82f6; color: #fff; border: none; border-radius: 8px;
   padding: 9px 20px; font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s;
 }
-.saveBtn:hover { background: #1d4ed8; }
+.saveBtn:hover { background: #2563eb; }
 .saveBtn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 /* COMPANY HERO */
@@ -319,7 +319,7 @@
 /* CONTACTS */
 .contactList { display: flex; flex-direction: column; gap: 10px; }
 .contactRow { font-size: 14px; color: #374151; display: flex; align-items: center; gap: 8px; }
-.contactRow a { color: #2563eb; text-decoration: underline; }
+.contactRow a { color: #3b82f6; text-decoration: underline; }
 .contactEmpty { font-size: 13px; color: #d1d5db; font-style: italic; }
 .aboutText { font-size: 14px; color: #374151; line-height: 1.7; }
 
@@ -328,11 +328,11 @@
 .vacanciesHeader { display: flex; justify-content: space-between; align-items: center; }
 .vacanciesTitle { font-size: 22px; font-weight: 800; color: #111827; }
 .addVacancyBtn {
-  background: #2563eb; color: #fff; border: none; border-radius: 9px;
+  background: #3b82f6; color: #fff; border: none; border-radius: 9px;
   padding: 10px 20px; font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s;
 }
-.addVacancyBtn:hover { background: #1d4ed8; }
+.addVacancyBtn:hover { background: #2563eb; }
 
 .vacancyForm {
   background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 24px;
@@ -347,14 +347,14 @@
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
   outline: none; background: #fafafa; width: 100%; transition: border-color 0.2s;
 }
-.formInput:focus { border-color: #2563eb; background: #fff; }
+.formInput:focus { border-color: #3b82f6; background: #fff; }
 .formInput::placeholder { color: #9ca3af; }
 .formTextarea {
   width: 100%; padding: 11px 13px; border: 1.5px solid #e5e7eb; border-radius: 8px;
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
   outline: none; resize: vertical; line-height: 1.6; background: #fafafa;
 }
-.formTextarea:focus { border-color: #2563eb; background: #fff; }
+.formTextarea:focus { border-color: #3b82f6; background: #fff; }
 .formTextarea::placeholder { color: #9ca3af; }
 .formActions {
   display: flex; gap: 10px; justify-content: flex-end;
@@ -372,16 +372,16 @@
 .vacancyMeta { display: flex; gap: 16px; font-size: 14px; color: #374151; margin-bottom: 12px; }
 .vacancyTags { display: flex; gap: 8px; flex-wrap: wrap; }
 .vacancyTag {
-  background: #dbeafe; color: #1d4ed8;
+  background: #dbeafe; color: #2563eb;
   padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 500;
 }
 .editVacancyBtn {
-  background: #2563eb; color: #fff; border: none; border-radius: 10px;
+  background: #3b82f6; color: #fff; border: none; border-radius: 10px;
   padding: 11px 20px; font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap;
   transition: background 0.15s; flex-shrink: 0;
 }
-.editVacancyBtn:hover { background: #1d4ed8; }
+.editVacancyBtn:hover { background: #2563eb; }
 
 /* TOAST */
 .toast {

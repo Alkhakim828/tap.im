@@ -14,7 +14,7 @@
   color: #374151; cursor: pointer; transition: background 0.15s;
 }
 .navBtn:hover { background: #f3f4f6; }
-.navBtn.active { background: #2563eb; color: #fff; }
+.navBtn.active { background: #3b82f6; color: #fff; }
 
 .layout { display: flex; gap: 20px; margin: 28px 32px; align-items: flex-start; }
 
@@ -31,7 +31,7 @@
   color: #374151; cursor: pointer; transition: background 0.15s;
 }
 .tabBtn:hover { background: #f3f4f6; }
-.tabActive { background: #2563eb !important; color: #fff !important; }
+.tabActive { background: #3b82f6 !important; color: #fff !important; }
 .logoutBtn {
   margin-top: 8px; width: 100%; text-align: left; background: none;
   border: none; border-top: 1px solid #f3f4f6; padding: 10px 14px;
@@ -57,7 +57,7 @@
   background: none; border: none; font-size: 16px; cursor: pointer;
   color: #9ca3af; transition: color 0.15s; padding: 4px; line-height: 1;
 }
-.editBtn:hover { color: #2563eb; }
+.editBtn:hover { color: #3b82f6; }
 
 /* HERO */
 .heroRow { display: flex; gap: 18px; align-items: flex-start; }
@@ -67,7 +67,7 @@
 .heroRole { font-size: 14px; color: #6b7280; margin-bottom: 10px; }
 .heroMeta { display: flex; gap: 20px; font-size: 13px; color: #6b7280; margin-bottom: 10px; }
 .levelBadge {
-  display: inline-block; background: #dbeafe; color: #1d4ed8;
+  display: inline-block; background: #dbeafe; color: #2563eb;
   border-radius: 20px; padding: 3px 14px; font-size: 12px; font-weight: 600;
 }
 .empty { color: #d1d5db; font-style: italic; font-weight: 400; font-size: 14px; }
@@ -75,7 +75,7 @@
 /* CONTACTS */
 .contactList { display: flex; flex-direction: column; gap: 10px; }
 .contactRow { font-size: 14px; color: #374151; display: flex; align-items: center; gap: 8px; }
-.contactRow a { color: #2563eb; text-decoration: underline; }
+.contactRow a { color: #3b82f6; text-decoration: underline; }
 .contactEmpty { font-size: 13px; color: #d1d5db; font-style: italic; }
 
 /* BIO */
@@ -90,7 +90,7 @@
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
   outline: none; transition: border-color 0.2s; background: #fafafa; width: 100%;
 }
-.editInput:focus { border-color: #2563eb; background: #fff; }
+.editInput:focus { border-color: #3b82f6; background: #fff; }
 .editInput::placeholder { color: #9ca3af; }
 .editSelect {
   padding: 10px 13px; border: 1.5px solid #e5e7eb; border-radius: 8px;
@@ -102,7 +102,7 @@
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #111827;
   outline: none; resize: vertical; line-height: 1.6; background: #fafafa;
 }
-.editTextarea:focus { border-color: #2563eb; background: #fff; }
+.editTextarea:focus { border-color: #3b82f6; background: #fff; }
 .editTextarea::placeholder { color: #9ca3af; }
 
 .editActions {
@@ -115,20 +115,20 @@
   font-size: 13px; font-weight: 600; cursor: pointer;
 }
 .saveBtn {
-  background: #2563eb; color: #fff; border: none; border-radius: 8px;
+  background: #3b82f6; color: #fff; border: none; border-radius: 8px;
   padding: 9px 20px; font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s;
 }
-.saveBtn:hover { background: #1d4ed8; }
+.saveBtn:hover { background: #2563eb; }
 
 /* SECURITY */
 .changePassBtn {
-  width: 100%; background: #2563eb; color: #fff; border: none;
+  width: 100%; background: #3b82f6; color: #fff; border: none;
   border-radius: 10px; padding: 14px;
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700;
   cursor: pointer; transition: background 0.15s;
 }
-.changePassBtn:hover { background: #1d4ed8; }
+.changePassBtn:hover { background: #2563eb; }
 
 /* SAVED TAB EMPTY */
 .emptyTabWrap {
@@ -148,10 +148,10 @@
   display: flex; align-items: center; gap: 7px;
   font-size: 13px; color: #374151; cursor: pointer;
 }
-.skillCheckRow input { accent-color: #2563eb; width: 14px; height: 14px; }
+.skillCheckRow input { accent-color: #3b82f6; width: 14px; height: 14px; }
 .skillTags { display: flex; flex-wrap: wrap; gap: 8px; }
 .skillTag {
-  background: #dbeafe; color: #1d4ed8;
+  background: #dbeafe; color: #2563eb;
   padding: 5px 14px; border-radius: 20px;
   font-size: 13px; font-weight: 500;
 }
@@ -159,7 +159,7 @@
 /* EXPERIENCE */
 .expList { display: flex; flex-direction: column; gap: 20px; }
 .expItem { display: flex; gap: 14px; }
-.expBar { width: 3px; flex-shrink: 0; background: #2563eb; border-radius: 4px; min-height: 60px; }
+.expBar { width: 3px; flex-shrink: 0; background: #3b82f6; border-radius: 4px; min-height: 60px; }
 .expTitle { font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 2px; }
 .expCompany { font-size: 13px; color: #4b5563; margin-bottom: 2px; }
 .expDates { font-size: 12px; color: #9ca3af; margin-bottom: 4px; }
@@ -171,7 +171,7 @@
   padding: 14px; display: flex; flex-direction: column; gap: 10px;
 }
 .removeBtn {
-  background: #fef2f2; color: #dc2626; border: 1px solid #fecaca;
+  background: #fef2f2; color: #ef4444; border: 1px solid #fecaca;
   border-radius: 7px; padding: 6px 14px; font-size: 12px; font-weight: 600;
   cursor: pointer; align-self: flex-start; transition: background 0.15s;
 }
@@ -181,7 +181,7 @@
   padding: 10px; width: 100%; font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px; color: #6b7280; cursor: pointer; transition: all 0.15s;
 }
-.addBtn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+.addBtn:hover { border-color: #3b82f6; color: #3b82f6; background: #eff6ff; }
 
 /* EDUCATION */
 .eduList { display: flex; flex-direction: column; gap: 14px; }
@@ -233,21 +233,69 @@
 .savedList { display: flex; flex-direction: column; gap: 12px; }
 
 .savedCard {
-  display: flex; justify-content: space-between; align-items: center;
-  background: #fff; border-radius: 12px; padding: 16px; 
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+}
+.savedCard:hover {
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+  border-color: #dbeafe;
 }
 
-.savedCardLeft { display: flex; gap: 12px; align-items: flex-start; }
-.savedCardInfo { display: flex; flex-direction: column; gap: 4px; }
-.savedCardTitle { font-size: 15px; font-weight: 600; margin: 0; }
-.savedCardCompany { font-size: 13px; color: #666; }
-.savedCardMeta { display: flex; gap: 10px; font-size: 12px; color: #888; }
-.savedCardActions { flex-shrink: 0; }
+.savedCardLeft {
+  display: flex; gap: 16px; flex: 1; min-width: 0; align-items: center;
+}
+.companyLogo { flex-shrink: 0; }
+.companyLogo svg { display: block; border-radius: 8px; }
+
+.savedCardInfo { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.savedCardTitle {
+  font-size: 16px; font-weight: 700; color: #111827; margin: 0 0 2px;
+}
+.savedCardCompany {
+  font-size: 13px; color: #6b7280; margin-bottom: 8px; font-weight: 500;
+}
+.savedCardMeta {
+  display: flex; gap: 14px; font-size: 13px; color: #6b7280;
+  flex-wrap: wrap; margin-bottom: 8px;
+}
+.savedCardMeta span { display: inline-flex; align-items: center; gap: 5px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+.tagPink { background: #fce7f3; color: #db2777; }
+.tagBlue { background: #dbeafe; color: #2563eb; }
+
+.savedCardActions {
+  display: flex; gap: 10px; align-items: center; flex-shrink: 0;
+}
+
+.savedDetailBtn {
+  background: #3b82f6; color: #fff;
+  border: none; border-radius: 8px;
+  padding: 10px 20px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; white-space: nowrap;
+  transition: background 0.15s;
+}
+.savedDetailBtn:hover { background: #2563eb; }
 
 .removeBookmarkBtn {
-  background: none; border: none; cursor: pointer;
-  font-size: 18px; opacity: 0.6; transition: opacity 0.15s;
+  background: #f9fafb; border: 1px solid #e5e7eb;
+  border-radius: 8px; width: 36px; height: 36px;
+  cursor: pointer;
+  color: #ef4444;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  flex-shrink: 0;
 }
-.removeBookmarkBtn:hover { opacity: 1; }
-.removeBookmarkBtn:disabled { cursor: not-allowed; opacity: 0.3; }
+.removeBookmarkBtn:hover { background: #fef2f2; border-color: #fecaca; }
+.removeBookmarkBtn:disabled { cursor: not-allowed; opacity: 0.5; }

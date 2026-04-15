@@ -32,7 +32,7 @@
   transition: background 0.15s;
 }
 .navBtn:hover { background: #f3f4f6; }
-.navBtn.active { background: #2563eb; color: #fff; }
+.navBtn.active { background: #3b82f6; color: #fff; }
 
 .content {
   max-width: 960px;
@@ -57,7 +57,7 @@
   display: flex; align-items: center; gap: 10px;
   margin-bottom: 16px;
 }
-.iconBlue { color: #2563eb; }
+.iconBlue { color: #3b82f6; }
 
 .cardDesc {
   font-size: 14px; color: #4b5563;
@@ -80,7 +80,7 @@
 }
 
 .stepNum {
-  background: #2563eb;
+  background: #3b82f6;
   color: #fff;
   width: 32px; height: 32px;
   border-radius: 8px;

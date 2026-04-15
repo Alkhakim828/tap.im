@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #2a6ef5 0%, #4285f4 42%, #a8c4f8 76%, #d4e4ff 100%);
+  background: linear-gradient(135deg, #1166ff 0%, #3b82f6 42%, #93c5fd 76%, #dbeafe 100%);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -14,7 +14,7 @@
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  border: 64px solid rgba(255, 255, 255, 0.11);
+  border: 64px solid rgba(255, 255, 255, 0.18);
   top: -90px;
   right: 400px;
   pointer-events: none;
@@ -25,7 +25,7 @@
   width: 340px;
   height: 340px;
   border-radius: 50%;
-  border: 52px solid rgba(255, 255, 255, 0.09);
+  border: 52px solid rgba(255, 255, 255, 0.15);
   bottom: -70px;
   right: 360px;
   pointer-events: none;
@@ -68,7 +68,7 @@
 .btnOutline:hover { background: rgba(255, 255, 255, 0.15); }
 
 .btnSolid {
-  background: #2563eb;
+  background: #3b82f6;
   border: none;
   color: #fff;
   padding: 10px 28px;
@@ -79,7 +79,7 @@
   cursor: pointer;
   transition: background 0.2s;
 }
-.btnSolid:hover { background: #1d4ed8; }
+.btnSolid:hover { background: #2563eb; }
 
 /* HERO */
 .hero {
@@ -115,8 +115,8 @@
 }
 
 .btnTry {
-  background: rgba(255, 255, 255, 0.14);
-  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
   color: #fff;
   padding: 14px 28px;
   border-radius: 10px;

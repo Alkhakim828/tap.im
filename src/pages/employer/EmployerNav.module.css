@@ -29,4 +29,4 @@
   transition: background 0.15s;
 }
 .navBtn:hover { background: #f3f4f6; }
-.navBtn.active { background: #2563eb; color: #fff; }
+.navBtn.active { background: #3b82f6; color: #fff; }
