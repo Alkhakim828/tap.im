@@ -33,6 +33,34 @@ export default function CandidateChatPage() {
     setConversations(updated)
   }
 
+  // Загружаем список диалогов с бэкенда
+  useEffect(() => {
+    if (!user?.userId) return
+    chatAPI.getConversations(user.userId)
+      .then(data => {
+        const serverConvs = (data || []).map(d => ({
+          userId:      d.user_id ?? d.other_user_id ?? d.id,
+          name:        d.name || d.full_name || `Работодатель #${d.user_id ?? d.id}`,
+          company:     d.company || d.company_name || d.role || '',
+          lastMessage: d.last_message || d.lastMessage || '',
+          unread:      d.unread_count ?? d.unread ?? 0,
+        })).filter(c => c.userId != null)
+
+        // Мержим с локальным кэшем (localStorage) — сохраняем локальные данные,
+        // обновляем последними сообщениями и unread с бэка
+        setConversations(prev => {
+          const byId = new Map(prev.map(c => [c.userId, c]))
+          serverConvs.forEach(sc => {
+            byId.set(sc.userId, { ...byId.get(sc.userId), ...sc })
+          })
+          const merged = Array.from(byId.values())
+          localStorage.setItem(storageKey, JSON.stringify(merged))
+          return merged
+        })
+      })
+      .catch(e => console.error('Conversations load error:', e))
+  }, [user?.userId])
+
   // Если пришли с другой страницы с данными о собеседнике — добавляем диалог
   useEffect(() => {
     if (location.state?.chatWith) {

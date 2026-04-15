@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { profileAPI, favoritesAPI } from '../api/index.js'
+import { profileAPI, favoriteProfilesAPI, extractFavoriteIds } from '../api/index.js'
 import { useAuth } from '../context/AuthContext'
 import styles from './ProfilePage.module.css'
 import navStyles from './employer/EmployerNav.module.css'
@@ -38,23 +38,23 @@ export default function CandidateProfileViewPage() {
 
   useEffect(() => {
     if (!user?.userId) return
-    favoritesAPI.getFavorites(user.userId)
+    favoriteProfilesAPI.getFavoriteProfiles(user.userId)
       .then(data => {
-        const ids = (data || []).map(f => String(f.vacancy_id || f.id || f))
-        setIsFav(ids.includes(String(userId)))
+        const ids = extractFavoriteIds(data)
+        setIsFav(ids.has(String(userId)))
       })
-      .catch(() => {})
+      .catch(() => setIsFav(false))
   }, [user?.userId, userId])
 
   async function toggleFav() {
     if (!user?.userId) return
     try {
       if (isFav) {
-        await favoritesAPI.removeFavorite(user.userId, userId)
+        await favoriteProfilesAPI.removeFavoriteProfile(user.userId, userId)
         setIsFav(false)
         showToast('Удалено из избранного')
       } else {
-        await favoritesAPI.addFavorite(user.userId, userId)
+        await favoriteProfilesAPI.addFavoriteProfile(user.userId, userId)
         setIsFav(true)
         showToast('✅ Добавлено в избранное')
       }

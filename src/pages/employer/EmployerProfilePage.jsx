@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import { vacanciesAPI, companiesAPI } from '../../api/index.js'
+import { vacanciesAPI, companiesAPI, favoriteProfilesAPI, profileAPI, extractFavoriteIds } from '../../api/index.js'
 import EmployerNav from './EmployerNav'
 import styles from './EmployerProfile.module.css'
+import cardStyles from './CandidatesPage.module.css'
 import { IconEdit, IconHourglass, IconPin, IconUsers, IconLink, IconMail, IconPhone, IconClipboard, IconMoney, IconBookmark } from '../../components/Icons'
 
 const TABS = ['Основные', 'Открытые вакансии', 'Сохраненные анкеты']
@@ -32,7 +33,7 @@ export default function EmployerProfilePage() {
         <div className={styles.main}>
           {tab === 'Основные' && <MainTab user={user} />}
           {tab === 'Открытые вакансии' && <VacanciesTab user={user} />}
-          {tab === 'Сохраненные анкеты' && <SavedTab />}
+          {tab === 'Сохраненные анкеты' && <SavedTab user={user} />}
         </div>
       </div>
     </div>
@@ -418,12 +419,173 @@ function VacanciesTab({ user }) {
   )
 }
 
-function SavedTab() {
+function SavedTab({ user }) {
+  const navigate = useNavigate()
+  const [candidates, setCandidates] = useState([])
+  const [loading,    setLoading]    = useState(true)
+  const [error,      setError]      = useState('')
+  const [removing,   setRemoving]   = useState(new Set())
+  const [toast,      setToast]      = useState('')
+
+  function showToast(msg) { setToast(msg); setTimeout(() => setToast(''), 2000) }
+
+  useEffect(() => {
+    if (!user?.userId) return
+    setLoading(true)
+    setError('')
+
+    // Грузим избранных + все профили параллельно, чтобы получить полные данные
+    Promise.all([
+      favoriteProfilesAPI.getFavoriteProfiles(user.userId).catch(() => []),
+      profileAPI.getAllProfiles().catch(() => []),
+    ])
+      .then(([favs, all]) => {
+        const allList = Array.isArray(all) ? all : (all?.profiles || all?.data || [])
+        const favArray = Array.isArray(favs)
+          ? favs
+          : (favs?.favorites || favs?.data || favs?.items || favs?.profiles || [])
+
+        // Если бэк уже возвращает полные данные — используем их,
+        // иначе достаём по ID из общего списка профилей
+        const hasFullData = favArray.length > 0 && (favArray[0].first_name != null || favArray[0].specialization != null)
+
+        let result
+        if (hasFullData) {
+          result = favArray
+        } else {
+          const favIds = extractFavoriteIds(favs)
+          result = allList.filter(p => favIds.has(String(p.user_id)))
+        }
+        setCandidates(result)
+      })
+      .catch(() => setError('Не удалось загрузить сохранённые анкеты'))
+      .finally(() => setLoading(false))
+  }, [user?.userId])
+
+  async function handleRemove(candidateId) {
+    if (!user?.userId || candidateId == null) return
+    const id = String(candidateId)
+    if (removing.has(id)) return
+
+    setRemoving(prev => { const next = new Set(prev); next.add(id); return next })
+
+    try {
+      await favoriteProfilesAPI.removeFavoriteProfile(user.userId, candidateId)
+      setCandidates(prev => prev.filter(c => String(c.user_id) !== id))
+      showToast('Удалено из избранного')
+    } catch (e) {
+      showToast('❌ ' + e.message)
+    } finally {
+      setRemoving(prev => { const next = new Set(prev); next.delete(id); return next })
+    }
+  }
+
+  if (loading) {
+    return (
+      <div style={{padding:'40px',textAlign:'center',color:'#6b7280'}}>
+        <IconHourglass size={16}/> Загружаем сохранённые анкеты...
+      </div>
+    )
+  }
+
+  if (error) {
+    return <div style={{padding:'40px',textAlign:'center',color:'#ef4444'}}>{error}</div>
+  }
+
+  if (candidates.length === 0) {
+    return (
+      <div className={styles.emptyTabWrap}>
+        <div className={styles.emptyIcon}><IconBookmark size={36}/></div>
+        <h3 className={styles.emptyTabTitle}>Нет сохранённых анкет</h3>
+        <p className={styles.emptyTabDesc}>Нажмите на иконку закладки в карточке кандидата, чтобы сохранить его анкету здесь</p>
+      </div>
+    )
+  }
+
   return (
-    <div className={styles.emptyTabWrap}>
-      <div className={styles.emptyIcon}><IconBookmark size={36}/></div>
-      <h3 className={styles.emptyTabTitle}>Нет сохранённых анкет</h3>
-      <p className={styles.emptyTabDesc}>Нажмите на иконку закладки в карточке кандидата, чтобы сохранить его анкету здесь</p>
+    <div>
+      {toast && <div className={cardStyles.toast}>{toast}</div>}
+      <div style={{ marginBottom: 16, color: '#374151', fontSize: 14, fontWeight: 500 }}>
+        Сохранено анкет: {candidates.length}
+      </div>
+      <div className={cardStyles.grid}>
+        {candidates.map(c => (
+          <div key={c.user_id} className={cardStyles.card}>
+            <div className={cardStyles.cardTop}>
+              <div className={cardStyles.cardAvatarWrap}>
+                <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+                  <rect width="52" height="52" rx="8" fill="#e8edf8"/>
+                  <circle cx="26" cy="19" r="8" fill="#9aa8c8"/>
+                  <path d="M8 48c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#b8c4d8"/>
+                </svg>
+              </div>
+              <div className={cardStyles.cardInfo}>
+                <h3 className={cardStyles.cardName}>
+                  {[c.first_name, c.last_name].filter(Boolean).join(' ') || 'Имя не указано'}
+                </h3>
+                <div className={cardStyles.cardRole}>
+                  {c.specialization || <span style={{color:'#d1d5db'}}>Специализация не указана</span>}
+                </div>
+                <div className={cardStyles.cardMeta}>
+                  {c.city && <span><IconPin size={12}/> {c.city}</span>}
+                  {c.level && <span className={cardStyles.levelPill}>{c.level}</span>}
+                </div>
+              </div>
+              <button
+                className={`${cardStyles.bookmarkBtn} ${cardStyles.bookmarkActive}`}
+                onClick={() => handleRemove(c.user_id)}
+                disabled={removing.has(String(c.user_id))}
+                title="Убрать из избранного"
+              >
+                <IconBookmark size={14}/>
+              </button>
+            </div>
+
+            {(c.skills || []).length > 0 && (
+              <div className={cardStyles.tags}>
+                {(c.skills || []).slice(0, 4).map(t => (
+                  <span key={t} className={cardStyles.tag}>{t}</span>
+                ))}
+              </div>
+            )}
+
+            {(c.salary_min || c.salary_max) && (
+              <div className={cardStyles.salary}>
+                {c.salary_min && c.salary_max
+                  ? `${Number(c.salary_min).toLocaleString('ru')} - ${Number(c.salary_max).toLocaleString('ru')} KZT`
+                  : c.salary_min
+                    ? `от ${Number(c.salary_min).toLocaleString('ru')} KZT`
+                    : `до ${Number(c.salary_max).toLocaleString('ru')} KZT`}
+              </div>
+            )}
+
+            <div className={cardStyles.divider} />
+            <div className={cardStyles.cardActions}>
+              <button
+                className={cardStyles.profileBtn}
+                onClick={() => navigate(`/employer/candidates/${c.user_id}`)}
+              >
+                Открыть профиль
+              </button>
+              <button
+                className={cardStyles.iconBtn}
+                title="Написать сообщение"
+                onClick={() => navigate('/employer/chat', {
+                  state: {
+                    chatWith: {
+                      userId: c.user_id,
+                      name: [c.first_name, c.last_name].filter(Boolean).join(' ') || 'Кандидат',
+                      role: c.specialization || '',
+                    }
+                  }
+                })}
+              >
+                <IconMail size={15}/>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
