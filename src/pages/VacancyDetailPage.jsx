@@ -91,13 +91,12 @@ export default function VacancyDetailPage() {
         <button className={styles.backBtn} onClick={goBack}>← Назад</button>
 
         {/* HEADER CARD */}
-        <div className={styles.card}>
+        <div className={styles.headerCard}>
           <div className={styles.headerRow}>
             <div className={styles.logoWrap}>
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                <rect width="56" height="56" rx="10" fill="#e8edf8"/>
-                <circle cx="28" cy="21" r="9" fill="#9aa8c8"/>
-                <path d="M10 50c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#b8c4d8"/>
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="24" r="10" fill="#60a5fa"/>
+                <path d="M12 58c0-11.046 8.954-20 20-20s20 8.954 20 20" fill="#93c5fd"/>
               </svg>
             </div>
             <div className={styles.headerInfo}>
@@ -133,7 +132,7 @@ export default function VacancyDetailPage() {
         {vacancy.vacancy_description && (
           <div className={styles.card}>
             <h2 className={styles.sectionTitle}>Описание вакансии</h2>
-            <p className={styles.description}>{vacancy.vacancy_description}</p>
+            <ExpandableText text={vacancy.vacancy_description} />
           </div>
         )}
 
@@ -155,6 +154,26 @@ export default function VacancyDetailPage() {
           </button>
         )}
       </div>
+    </div>
+  )
+}
+
+function ExpandableText({ text, limit = 420 }) {
+  const [expanded, setExpanded] = useState(false)
+  const needsTruncation = text.length > limit
+  const displayed = !needsTruncation || expanded ? text : text.slice(0, limit).trimEnd() + '…'
+
+  return (
+    <div>
+      <p className={styles.description}>{displayed}</p>
+      {needsTruncation && (
+        <button
+          className={styles.readMoreBtn}
+          onClick={() => setExpanded(e => !e)}
+        >
+          {expanded ? 'Свернуть' : 'Читать полностью'}
+        </button>
+      )}
     </div>
   )
 }

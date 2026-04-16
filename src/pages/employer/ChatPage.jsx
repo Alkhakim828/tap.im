@@ -35,6 +35,32 @@ export default function ChatPage() {
     setConversations(updated)
   }
 
+  // Загружаем список диалогов с бэкенда
+  useEffect(() => {
+    if (!user?.userId) return
+    chatAPI.getConversations(user.userId)
+      .then(data => {
+        const serverConvs = (data || []).map(d => ({
+          userId:      d.user_id ?? d.other_user_id ?? d.id,
+          name:        d.name || d.full_name || `Пользователь #${d.user_id ?? d.id}`,
+          role:        d.role || d.specialization || '',
+          lastMessage: d.last_message || d.lastMessage || '',
+          unread:      d.unread_count ?? d.unread ?? 0,
+        })).filter(c => c.userId != null)
+
+        setConversations(prev => {
+          const byId = new Map(prev.map(c => [c.userId, c]))
+          serverConvs.forEach(sc => {
+            byId.set(sc.userId, { ...byId.get(sc.userId), ...sc })
+          })
+          const merged = Array.from(byId.values())
+          localStorage.setItem(storageKey, JSON.stringify(merged))
+          return merged
+        })
+      })
+      .catch(e => console.error('Conversations load error:', e))
+  }, [user?.userId])
+
   // Если пришли со страницы кандидатов — добавляем диалог
   useEffect(() => {
     if (location.state?.chatWith) {

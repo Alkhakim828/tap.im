@@ -56,7 +56,7 @@ export default function ProfilePage() {
 
         <div className={styles.main}>
           {tab === 'Основные' && <MainTab user={user} />}
-          {tab === 'Сохраненные вакансии' && <SavedTab userId={currentUserId} />}
+          {tab === 'Сохраненные вакансии' && <SavedTab userId={currentUserId} navigate={navigate} />}
         </div>
       </div>
     </div>
@@ -543,7 +543,7 @@ function MainTab({ user }) {
 }
 
 // ── SAVED TAB ─────────────────────────────────────────────────────
-function SavedTab({ userId }) {
+function SavedTab({ userId, navigate }) {
   const [vacancies, setVacancies] = useState([])
   const [loading, setLoading] = useState(true)
   const [removingId, setRemovingId] = useState(null)
@@ -683,6 +683,12 @@ function SavedTab({ userId }) {
             </div>
           </div>
           <div className={styles.savedCardActions}>
+            <button
+              className={styles.savedDetailBtn}
+              onClick={() => navigate(`/vacancies/${v.id}`)}
+            >
+              Подробнее
+            </button>
             <button
               className={styles.removeBookmarkBtn}
               onClick={() => removeFromFavorites(v.id)}

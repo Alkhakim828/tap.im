@@ -313,6 +313,11 @@ export const chatAPI = {
     return request(`/chat/unread/${userId}`)
   },
 
+  // GET /chat/conversations/{user_id} — список диалогов с бэкенда
+  getConversations(userId) {
+    return request(`/chat/conversations/${userId}`)
+  },
+
   // WebSocket — идёт напрямую, не через proxy
   connectWS(userId) {
     return new WebSocket(`wss://tapim.onrender.com/chat/ws/${userId}`)
@@ -337,6 +342,55 @@ export const favoritesAPI = {
   // DELETE /favorites/{user_id}/{vacancy_id} — убрать из избранного
   removeFavorite(userId, vacancyId) {
     return request(`/favorites/${userId}/${vacancyId}`, {
+      method: 'DELETE',
+    })
+  },
+}
+
+// ─── FAVORITE PROFILES (employer bookmarks candidates) ───────────────
+
+// Универсальная нормализация ответа /favorite-profiles в Set<string> id.
+// Бэк может вернуть:
+//   [1, 2, 3]
+//   [{profile_id: 1}, ...]
+//   [{user_id: 1}, ...]
+//   [{id: 1}, ...]
+//   [{user_id: 1, first_name: '...', ...}]  ← полные профили
+//   {favorites: [...]}, {data: [...]}, {items: [...]}
+//   null / undefined / 404
+export function extractFavoriteIds(raw) {
+  if (!raw) return new Set()
+  const list = Array.isArray(raw)
+    ? raw
+    : (raw.favorites || raw.data || raw.items || raw.profiles || [])
+  if (!Array.isArray(list)) return new Set()
+  return new Set(
+    list
+      .map(f => {
+        if (f == null) return null
+        if (typeof f === 'number' || typeof f === 'string') return String(f)
+        return String(f.profile_id ?? f.user_id ?? f.id ?? '')
+      })
+      .filter(Boolean)
+  )
+}
+
+export const favoriteProfilesAPI = {
+  // GET /favorite-profiles/{user_id} — избранные кандидаты рекрутера
+  getFavoriteProfiles(userId) {
+    return request(`/favorite-profiles/${userId}`)
+  },
+
+  // POST /favorite-profiles/{user_id}/{profile_id} — добавить кандидата
+  addFavoriteProfile(userId, profileId) {
+    return request(`/favorite-profiles/${userId}/${profileId}`, {
+      method: 'POST',
+    })
+  },
+
+  // DELETE /favorite-profiles/{user_id}/{profile_id} — убрать кандидата
+  removeFavoriteProfile(userId, profileId) {
+    return request(`/favorite-profiles/${userId}/${profileId}`, {
       method: 'DELETE',
     })
   },

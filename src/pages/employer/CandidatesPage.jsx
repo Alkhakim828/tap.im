@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { profileAPI } from '../../api/index.js'
+import { profileAPI, favoriteProfilesAPI, extractFavoriteIds } from '../../api/index.js'
+import { useAuth } from '../../context/AuthContext'
 import EmployerNav from './EmployerNav'
 import styles from './CandidatesPage.module.css'
 import { IconHourglass, IconPin, IconBookmark, IconMail } from '../../components/Icons'
@@ -12,10 +13,16 @@ const LEVELS = ['Intern', 'Junior', 'Middle', 'Senior', 'Lead']
 
 export default function CandidatesPage() {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [allCandidates, setAllCandidates] = useState([])
   const [loading,  setLoading]  = useState(true)
   const [apiError, setApiError] = useState('')
   const [search,   setSearch]   = useState('')
+  const [favoriteIds, setFavoriteIds] = useState(new Set())
+  const [favBusy,  setFavBusy]  = useState(new Set())
+  const [toast,    setToast]    = useState('')
+
+  function showToast(msg) { setToast(msg); setTimeout(() => setToast(''), 2000) }
 
   // Pending (до нажатия Применить)
   const [pendingSkills,      setPendingSkills]      = useState([])
@@ -59,6 +66,60 @@ export default function CandidatesPage() {
       .finally(() => setLoading(false))
   }, [])
 
+  // Загружаем избранных кандидатов (по умолчанию при открытии страницы)
+  useEffect(() => {
+    if (!user?.userId) return
+    favoriteProfilesAPI.getFavoriteProfiles(user.userId)
+      .then(data => {
+        const ids = extractFavoriteIds(data)
+        console.log('⭐ Loaded favorite profiles:', Array.from(ids))
+        setFavoriteIds(ids)
+      })
+      .catch(err => {
+        // 404 = ничего не сохранено. Всё остальное логируем.
+        if (!/404|not found/i.test(err.message)) {
+          console.error('Failed to load favorites:', err)
+        }
+        setFavoriteIds(new Set())
+      })
+  }, [user?.userId])
+
+  async function toggleFavorite(candidateId) {
+    if (!user?.userId || candidateId == null) return
+    const id = String(candidateId)
+    if (favBusy.has(id)) return
+
+    setFavBusy(prev => { const next = new Set(prev); next.add(id); return next })
+    const isFav = favoriteIds.has(id)
+
+    // Оптимистичный апдейт
+    setFavoriteIds(prev => {
+      const next = new Set(prev)
+      if (isFav) next.delete(id); else next.add(id)
+      return next
+    })
+
+    try {
+      if (isFav) {
+        await favoriteProfilesAPI.removeFavoriteProfile(user.userId, candidateId)
+        showToast('Удалено из избранного')
+      } else {
+        await favoriteProfilesAPI.addFavoriteProfile(user.userId, candidateId)
+        showToast('✅ Добавлено в избранное')
+      }
+    } catch (e) {
+      // Откатываем при ошибке
+      setFavoriteIds(prev => {
+        const next = new Set(prev)
+        if (isFav) next.add(id); else next.delete(id)
+        return next
+      })
+      showToast('❌ ' + e.message)
+    } finally {
+      setFavBusy(prev => { const next = new Set(prev); next.delete(id); return next })
+    }
+  }
+
   const candidates = allCandidates.filter(c => {
     if (search) {
       const q = search.toLowerCase()
@@ -81,6 +142,7 @@ export default function CandidatesPage() {
   return (
     <div className={styles.page}>
       <EmployerNav />
+      {toast && <div className={styles.toast}>{toast}</div>}
 
       <div className={styles.layout}>
         <aside className={styles.sidebar}>
@@ -187,7 +249,14 @@ export default function CandidatesPage() {
                           {c.level && <span className={styles.levelPill}>{c.level}</span>}
                         </div>
                       </div>
-                      <button className={styles.bookmarkBtn}><IconBookmark size={14}/></button>
+                      <button
+                        className={`${styles.bookmarkBtn} ${favoriteIds.has(String(c.user_id)) ? styles.bookmarkActive : ''}`}
+                        onClick={() => toggleFavorite(c.user_id)}
+                        disabled={favBusy.has(String(c.user_id))}
+                        title={favoriteIds.has(String(c.user_id)) ? 'В избранном' : 'Добавить в избранное'}
+                      >
+                        <IconBookmark size={14}/>
+                      </button>
                     </div>
 
                     {(c.skills || []).length > 0 && (
