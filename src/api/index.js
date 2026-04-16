@@ -235,9 +235,10 @@ export const profileAPI = {
 // ─── VACANCIES ───────────────────────────────────────────────────────
 
 export const vacanciesAPI = {
-  // GET /vacancies/
-  getAll() {
-    return request('/vacancies/')
+  // GET /vacancies/?user_id=...
+  getAll(userId) {
+    const qs = userId ? `?user_id=${userId}` : ''
+    return request(`/vacancies/${qs}`)
   },
 
   // POST /vacancies/ — create vacancy (recruiter only)

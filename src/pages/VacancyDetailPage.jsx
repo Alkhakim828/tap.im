@@ -149,7 +149,20 @@ export default function VacancyDetailPage() {
 
         {/* APPLY BUTTON (only for candidates) */}
         {!isEmployer && (
-          <button className={styles.applyBtn}>
+          <button
+            className={styles.applyBtn}
+            onClick={() => navigate('/chat', {
+              state: {
+                chatWith: {
+                  userId: vacancy.user_id,
+                  name: vacancy.contact_name || vacancy.company_name || 'Работодатель',
+                  company: vacancy.company_name || '',
+                  lastMessage: '',
+                  unread: 0,
+                }
+              }
+            })}
+          >
             Откликнуться на вакансию
           </button>
         )}

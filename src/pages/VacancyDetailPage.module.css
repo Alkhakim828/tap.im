@@ -146,12 +146,19 @@
   width: 100%;
   box-shadow: 0 6px 16px rgba(59, 130, 246, 0.28);
   letter-spacing: 0.2px;
+  animation: pulseGlow 2.5s ease-in-out infinite;
 }
 .applyBtn:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(59, 130, 246, 0.38);
+  animation: none;
 }
 .applyBtn:active { transform: translateY(0); }
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 6px 16px rgba(59, 130, 246, 0.28); }
+  50% { box-shadow: 0 6px 28px rgba(59, 130, 246, 0.45); }
+}
 
 .center { display: flex; justify-content: center; align-items: center; flex: 1; font-size: 16px; color: #6b7280; padding: 60px; }
 

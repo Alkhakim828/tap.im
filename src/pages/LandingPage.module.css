@@ -18,6 +18,7 @@
   top: -90px;
   right: 400px;
   pointer-events: none;
+  animation: ringPulse 6s ease-in-out infinite;
 }
 .page::after {
   content: '';
@@ -29,6 +30,12 @@
   bottom: -70px;
   right: 360px;
   pointer-events: none;
+  animation: ringPulse 6s ease-in-out 2s infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.04); opacity: 0.7; }
 }
 
 /* NAV */
@@ -39,6 +46,12 @@
   padding: 26px 56px;
   position: relative;
   z-index: 10;
+  animation: fadeDown 0.6s ease-out;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .logo {
@@ -63,9 +76,9 @@
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
-.btnOutline:hover { background: rgba(255, 255, 255, 0.15); }
+.btnOutline:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-1px); }
 
 .btnSolid {
   background: #3b82f6;
@@ -77,9 +90,9 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
-.btnSolid:hover { background: #2563eb; }
+.btnSolid:hover { background: #2563eb; transform: translateY(-1px); }
 
 /* HERO */
 .hero {
@@ -103,6 +116,7 @@
   line-height: 1.05;
   letter-spacing: -2px;
   margin-bottom: 24px;
+  animation: slideUp 0.7s ease-out;
 }
 
 .heroDesc {
@@ -112,6 +126,11 @@
   line-height: 1.72;
   max-width: 430px;
   margin-bottom: 36px;
+  animation: slideUp 0.7s ease-out 0.15s both;
+}
+
+.heroBtns {
+  animation: slideUp 0.7s ease-out 0.3s both;
 }
 
 .btnTry {
@@ -127,9 +146,51 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
 }
-.btnTry:hover { background: rgba(255, 255, 255, 0.26); }
+.btnTry:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Stats row */
+.statsRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 40px;
+  animation: slideUp 0.7s ease-out 0.45s both;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statNum {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.statLabel {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.statDivider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* HERO IMAGE */
 .heroImageWrap {
@@ -142,6 +203,12 @@
   align-items: flex-end;
   justify-content: center;
   pointer-events: none;
+  animation: fadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .heroImg {
@@ -151,4 +218,49 @@
   object-fit: contain;
   object-position: bottom center;
   filter: drop-shadow(0 10px 40px rgba(20, 50, 130, 0.25));
+  animation: floatImg 4s ease-in-out infinite;
+}
+
+@keyframes floatImg {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Floating decorative dots */
+.floatingDot1,
+.floatingDot2,
+.floatingDot3 {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.floatingDot1 {
+  width: 12px;
+  height: 12px;
+  top: 30%;
+  left: 42%;
+  animation: floatDot 5s ease-in-out infinite;
+}
+
+.floatingDot2 {
+  width: 8px;
+  height: 8px;
+  top: 20%;
+  left: 55%;
+  animation: floatDot 6s ease-in-out 1s infinite;
+}
+
+.floatingDot3 {
+  width: 6px;
+  height: 6px;
+  bottom: 30%;
+  left: 38%;
+  animation: floatDot 4.5s ease-in-out 2s infinite;
+}
+
+@keyframes floatDot {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+  50% { transform: translateY(-18px) scale(1.3); opacity: 0.8; }
 }

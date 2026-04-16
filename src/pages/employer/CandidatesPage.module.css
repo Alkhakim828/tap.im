@@ -71,9 +71,15 @@
   background: #fff; border: 1px solid #e5e7eb;
   border-radius: 14px; padding: 20px 20px 18px;
   display: flex; flex-direction: column; gap: 12px;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, transform 0.15s;
+  animation: cardIn 0.35s ease-out both;
 }
-.card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 .cardTop { display: flex; gap: 12px; align-items: flex-start; }
 .cardAvatarWrap { flex-shrink: 0; }

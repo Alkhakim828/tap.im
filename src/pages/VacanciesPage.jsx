@@ -143,12 +143,12 @@ export default function VacanciesPage() {
     }
   }
 
-  useEffect(() => { loadVacancies() }, [])
+  useEffect(() => { loadVacancies() }, [currentUserId])
 
   async function loadVacancies() {
     setLoading(true); setApiError('')
     try {
-      const data = await vacanciesAPI.getAll()
+      const data = await vacanciesAPI.getAll(currentUserId)
       setAllVacancies(data.map(normalize))
     } catch (e) {
       setApiError('Не удалось загрузить вакансии. Проверьте соединение.')
@@ -196,13 +196,31 @@ export default function VacanciesPage() {
       if (!hasTag) return false
     }
 
-    // 4. Зарплата "От"
+    // 4. Уровень — ищем в title и tags
+    if (appliedLevels.length > 0) {
+      const titleLower = v.title.toLowerCase()
+      const tagsLower = v.tags.map(t => t.toLowerCase())
+      const matchesLevel = appliedLevels.some(l => {
+        const ll = l.toLowerCase()
+        return titleLower.includes(ll) || tagsLower.some(t => t.includes(ll))
+      })
+      if (!matchesLevel) return false
+    }
+
+    // 5. Индустрия / специализация
+    if (appliedIndustry && v.specialization) {
+      if (!v.specialization.toLowerCase().includes(appliedIndustry.toLowerCase())) return false
+    } else if (appliedIndustry && !v.specialization) {
+      return false
+    }
+
+    // 6. Зарплата "От"
     if (appliedSalaryFrom) {
       const from = Number(appliedSalaryFrom)
       if (v.salaryMax > 0 && v.salaryMax < from) return false
     }
 
-    // 5. Зарплата "До"
+    // 7. Зарплата "До"
     if (appliedSalaryTo) {
       const to = Number(appliedSalaryTo)
       if (v.salaryMin > 0 && v.salaryMin > to) return false

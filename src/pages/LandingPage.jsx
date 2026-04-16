@@ -39,17 +39,40 @@ export default function LandingPage() {
             быстро находить подходящие вакансии или
             профессионалов для своей команды.
           </p>
-          <button
-            className={styles.btnTry}
-            onClick={() => navigate('/login')}
-          >
-            Попробовать →
-          </button>
+          <div className={styles.heroBtns}>
+            <button
+              className={styles.btnTry}
+              onClick={() => navigate('/login')}
+            >
+              Попробовать →
+            </button>
+          </div>
+          <div className={styles.statsRow}>
+            <div className={styles.stat}>
+              <span className={styles.statNum}>500+</span>
+              <span className={styles.statLabel}>Вакансий</span>
+            </div>
+            <div className={styles.statDivider} />
+            <div className={styles.stat}>
+              <span className={styles.statNum}>1 200+</span>
+              <span className={styles.statLabel}>Кандидатов</span>
+            </div>
+            <div className={styles.statDivider} />
+            <div className={styles.stat}>
+              <span className={styles.statNum}>98%</span>
+              <span className={styles.statLabel}>Довольных</span>
+            </div>
+          </div>
         </div>
 
         <div className={styles.heroImageWrap}>
           <img src="/customer-question.png" alt="tapim hero" className={styles.heroImg} />
         </div>
+
+        {/* Floating decorative dots */}
+        <div className={styles.floatingDot1} />
+        <div className={styles.floatingDot2} />
+        <div className={styles.floatingDot3} />
       </div>
 
       {/* ROLE MODAL */}
